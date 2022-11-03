@@ -1,5 +1,5 @@
 /*Greg Jolly */
-package uta.webblackjack; 
+package uta.cse3310; 
 
 public class Bot {
     int amountwon = 0;

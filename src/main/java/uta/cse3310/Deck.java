@@ -1,4 +1,4 @@
-package uta.webblackjack;
+package uta.cse3310;
 import java.util.Vector;
 
 
@@ -21,8 +21,9 @@ public class Deck
 	}
 	
 	//Returns the card at the end of the deck, returns the card
-	Card getCard()
+	/*Card getCard()
 	{
 		
 	}
+	*/
 }

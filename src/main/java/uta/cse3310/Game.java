@@ -1,4 +1,4 @@
-package uta.webblackjack;
+package uta.cse3310;
 class Game {
   public static void main(String[] args) {
 

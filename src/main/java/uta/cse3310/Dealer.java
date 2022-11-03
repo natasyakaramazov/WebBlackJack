@@ -1,7 +1,7 @@
 /*
 * Alexander Jones
 */
-package uta.webblackjack;
+package uta.cse3310;
 
 public class Dealer
 {

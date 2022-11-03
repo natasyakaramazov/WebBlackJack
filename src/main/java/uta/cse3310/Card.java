@@ -3,7 +3,7 @@
 * Logan Thresher
 */
 
-package uta.webblackjack;
+package uta.cse3310;
 
 enum CardValue
 {
@@ -39,12 +39,12 @@ public class Card
 Card()
 {
     cardvalue = CardValue.Ace;
-    cardsuit = CardSuit.Hearts;
+    cardsuit = CardSuit.HEARTS;
 }
 
 Card(CardValue v, CardSuit s)
 {
-    cardvalue = c;
+    cardvalue = v;
     cardsuit = s;
 }
 }

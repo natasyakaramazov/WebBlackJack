@@ -1,11 +1,11 @@
-package  uta.webblackjack;
+package  uta.cse3310;
 class Event{
 
  public void stand(){
    //moves it to another player's turn
  }
 
-  public void split(Cards newCard){
+  public void split(Card newCard){
     //splits the card, starts a new bet
   }
   public void hit(){
@@ -17,6 +17,8 @@ class Event{
   }
   public static int random(){
     //utilizing the random library
+
+    return 0; 
   }
   public void insurance(){
     
