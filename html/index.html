@@ -1,0 +1,149 @@
+<html>
+
+  <meta charset="utf-8">
+
+<head>
+
+<title>Group 1 BlackJack</title>
+
+<link rel="stylesheet" href="page_style.css">
+
+</head>
+
+<h1>________</h1>
+
+<body>
+
+  <div id="nameInput">
+    <p>name: <input id="sendName" type="text">
+      <input type="button" name="sendName" value="Name" onclick="sendName()">
+    </p>
+  </div>
+
+  <img id="card1" src="3C.svg" width="100px">
+  <img id="card2" src="3D.svg" width="100px">
+  <img id="card3" src="3H.svg" width="100px">
+  <img id="card4" src="4C.svg" width="100px">
+  <img id="card5" src="5C.svg" width="100px">
+
+  <div id="textbox"></div>
+
+</body>
+
+</html>
+
+<script>
+
+var connection = null;
+var serverURL;
+
+serverUrl = "ws://" + window.location.hostname + ":9221";
+
+connection = new WebSocket(serverUrl);
+connection.onopen = function(evt){
+
+console.log("open");
+
+}
+
+var cardIdx = 0;
+var playerID = 0;
+
+connection.onmessage = function (evt){
+
+var msg;
+msg = evt.data;
+
+console.log("Message received: ");
+document.getElementById("textbook").innerText = document.getElementById("textbox").innerText + '\n\n' + "Message Received + "\n" + msg;
+
+  const obj = JSON.parse(msg);
+    if (!obj.players) {
+
+      playerID = obj.Id;
+      console.log("player ID = " + playerID);
+      document.getElementById("textbox").innerText =
+        document.getElementById("textbox").innerText + '\n\n' + "Player ID is " + playerID;
+    }
+    else {
+      const suite_to_char = new Map();
+
+      suite_to_char.set("SPADES", "S");
+      suite_to_char.set("HEARTS", "H");
+      suite_to_char.set("DIAMONDS", "D");
+      suite_to_char.set("CLUBS", "C");
+
+      const value_to_char = new Map();
+
+      value_to_char.set("TWO", "2");
+      value_to_char.set("THREE", "3");
+      value_to_char.set("FOUR", "4");
+      value_to_char.set("FIVE", "5");
+      value_to_char.set("SIX", "6");
+      value_to_char.set("SEVEN", "7");
+      value_to_char.set("EIGHT", "8");
+      value_to_char.set("NINE", "9");
+      value_to_char.set("TEN", "T");
+      value_to_char.set("JACK", "J");
+      value_to_char.set("QUEEN", "Q");
+      value_to_char.set("KING", "K");
+
+ console.log("dumping game state")
+      for (const player of obj.players) {
+        console.log("id =" + player.Id);
+        console.log("name =" + player.name);
+
+        // only show the cards for this player
+        if (playerID == player.Id) {
+
+          var i = 0;
+          for (const card of player.Cards) {
+            console.log("Card =" + card.suite + "  " + card.value);
+
+            var filename = value_to_char.get(card.value) + suite_to_char.get(card.suite) + ".svg";
+            var element = "card" + (i + 1);
+
+            document.getElementById(element).src = filename;
+            i++;
+          }  // each card
+        } // player id matches
+      } // each player
+    } // this is game state
+  }
+
+
+
+  function send() {
+
+    var msg = {
+      text: document.getElementById("send_text").value,
+    };
+    connection.send(JSON.stringify(msg));
+    console.log(JSON.stringify(msg));
+  }
+  function sendName() {
+
+    var msg = {
+      event: "NAME",
+      name: document.getElementById("sendName").value,
+      playerID: playerID
+    };
+    connection.send(JSON.stringify(msg));
+    console.log(JSON.stringify(msg));
+
+
+    // this shows how to hide html elements.
+    // like when the name is entered
+    //  it might be better to hide after the server has accepted it
+    // but this is just a demonstration
+
+    var x = document.getElementById("nameInput");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+
+  }
+
+</script>
