@@ -37,7 +37,7 @@
 var connection = null;
 var serverURL;
 
-serverUrl = "ws://" + window.location.hostname + ":9221";
+serverUrl = "ws://" + window.location.hostname + ":9881";
 
 connection = new WebSocket(serverUrl);
 connection.onopen = function(evt){
@@ -55,7 +55,7 @@ var msg;
 msg = evt.data;
 
 console.log("Message received: ");
-document.getElementById("textbook").innerText = document.getElementById("textbox").innerText + '\n\n' + "Message Received + "\n" + msg;
+//document.getElementById("textbook").innerText = document.getElementById("textbox").innerText + '\n\n' + "Message Received + "\n" + msg;
 
   const obj = JSON.parse(msg);
     if (!obj.players) {
