@@ -3,7 +3,10 @@ package uta.cse3310;
 
 public class Bot {
     int amountwon = 0;
-    void logicCheck(){
-
+    
+    
+		public enum status{
+			NORMAL, HIGHRISK, MINIMALRISK
+		
     }
 }
