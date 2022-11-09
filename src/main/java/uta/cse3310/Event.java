@@ -3,6 +3,7 @@ class Event{
 
  public void stand(){
    //moves it to another player's turn
+   //CurrentTurn = Player.PlayerID++;
  }
 
   public void split(Card newCard){
