@@ -105,5 +105,11 @@ public class Deck
         
         return temp;
 	}
+
+    //Adds a card to the deck
+    void addCard(Card newCard)
+    {
+        deck.add(newCard);
+    }
 	
 }
