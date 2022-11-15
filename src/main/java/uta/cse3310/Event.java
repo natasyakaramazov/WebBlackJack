@@ -1,10 +1,17 @@
 package  uta.cse3310;
 import java.util.Vector;
-class Event{
+ public class Event{
 
   public enum EventType{
-   STAND, SPLIT, HIT, FOLD, BET;
+  NAME, STAND, SPLIT, HIT, FOLD, BET;
   }
+ EventType event;
+  int playerID;
+  String playerName;
+
+public Event(){
+
+}
  public void stand(){
    //moves it to another player's turn
    //CurrentTurn = Player.PlayerID++;

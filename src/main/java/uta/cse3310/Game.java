@@ -1,6 +1,9 @@
 package uta.cse3310;
 import java.util.Vector;
 import uta.cse3310.Event.EventType;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 public class Game {
 
     Vector<Player> players; //KA
@@ -12,10 +15,31 @@ public class Game {
     
   }*/
 
+  public String exportStateAsJSON() {
+    Gson gson = new Gson();
+    return gson.toJson(this);
+}
+
   public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
        players.add(P);
        
   }
+
+  public void removePlayer(int indexOfPlayer){
+     players.remove(indexOfPlayer - 1);
+  }
+  public void processMessage(String msg) { /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
+
+    GsonBuilder builder = new GsonBuilder();
+    Gson gson = builder.create();
+    // take the string we just received, and turn it into a user event
+    Event SomethingHappens = gson.fromJson(msg, Event.class);
+
+    if (SomethingHappens.event == EventType.NAME) {
+        players.get(SomethingHappens.playerID).SetName(SomethingHappens.playerName);
+    }
+
+}
   public static String hints(Vector<Card> Hand){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
       //will be fi
       int total = 0;

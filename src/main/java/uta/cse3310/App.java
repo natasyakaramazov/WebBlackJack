@@ -64,7 +64,9 @@ public class App extends WebSocketServer {
   Vector<Game> OngoingGames = new Vector<Game>();
    private int playerCount;
    private Game newGame;
-  int GameIdNum;
+   private int GameIdNum;
+  private Object mutex = new Object();
+
 
   private void figurePlayerNum(int P){
      playerCount = P;
@@ -95,6 +97,21 @@ public class App extends WebSocketServer {
         newGame = new Game();
        
     }
+
+    conn.setAttachment(playerCount);
+
+    conn.send(player.asJSONString());
+    synchronized (mutex) {
+      newGame.addPlayer(player);
+    }
+    /*Sends Game Stae Everywhere */
+    synchronized (mutex) {
+      broadcast(newGame.exportStateAsJSON());
+      System.out.println("the game state" +newGame.exportStateAsJSON());
+    }
+  }
+
+
     // search for a game needing a player
     /*Game G = null;
     for (Game i : ActiveGames) {
@@ -138,25 +155,44 @@ public class App extends WebSocketServer {
     System.out.println(jsonString);
     broadcast(jsonString);
   */
-  }
+  
 
   @Override
   public void onClose(WebSocket conn, int code, String reason, boolean remote) {
     System.out.println(conn + " has closed");
     // Retrieve the game tied to the websocket connection
-   // Game G = conn.getAttachment();
-    //G = null;
+    int index = conn.getAttachment();
+    synchronized (mutex) {
+      newGame.removePlayer(index);
+
+      System.out.println("removed player index " + index);
+
+      // The state is now changed, so every client needs to be informed
+      broadcast(newGame.exportStateAsJSON());
+      System.out.println("the game state" + newGame.exportStateAsJSON());
+    }
   }
+  
 
   @Override
   public void onMessage(WebSocket conn, String message) {
     System.out.println(conn + ": " + message);
 
+    synchronized (mutex) {
+      // all incoming messages are processed by the game
+      newGame.processMessage(message);
+      // and the results of that message are sent to everyone
+      // as the "state of the game"
+
+      broadcast(newGame.exportStateAsJSON());
+    }
+    System.out.println(conn + ": " + message);
+  }
     // Bring in the data from the webpage
-    // A UserEvent is all that is allowed at this point
-   // GsonBuilder builder = new GsonBuilder();
-    //Gson gson = builder.create();
-    //UserEvent U = gson.fromJson(message, UserEvent.class);
+    // An Event is all that is allowed at this point
+  /*   GsonBuilder builder = new GsonBuilder();
+    Gson gson = builder.create();
+    Event.EventType E = gson.fromJson(message, Event.EventType.class); */
     //System.out.println(U.Button);
 
     // Get our Game Object
@@ -169,8 +205,7 @@ public class App extends WebSocketServer {
     //jsonString = gson.toJson(G);
 
    // System.out.println(jsonString);
-    //broadcast(jsonString);
-  }
+    //broadcast(jsonString);  }
 
   @Override
   public void onMessage(WebSocket conn, ByteBuffer message) {
