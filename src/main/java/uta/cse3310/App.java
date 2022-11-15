@@ -63,8 +63,12 @@ public class App extends WebSocketServer {
   // the vector ActiveGames
   Vector<Game> OngoingGames = new Vector<Game>();
    private int playerCount;
+   private Game newGame;
   int GameIdNum;
 
+  private void figurePlayerNum(int P){
+     playerCount = P;
+  }
   public App(int port) {
     super(new InetSocketAddress(port));
   }
@@ -81,9 +85,16 @@ public class App extends WebSocketServer {
   public void onOpen(WebSocket conn, ClientHandshake handshake) {
 
     System.out.println(conn.getRemoteSocketAddress().getAddress().getHostAddress() + " connected");
+      
+    playerCount = playerCount +1;
+    Player player = new Player(playerCount);/*Every time there's a new connection, player count increases, that
+    s their id number - Kierra Ashford */
 
-    //ServerEvent E = new ServerEvent();
-
+    if(playerCount ==0){
+       System.out.println("A new game begins");
+        newGame = new Game();
+       
+    }
     // search for a game needing a player
     /*Game G = null;
     for (Game i : ActiveGames) {

@@ -1,23 +1,34 @@
 package uta.cse3310;
 import java.util.Vector;
 import uta.cse3310.Event.EventType;
-class Game {
+public class Game {
 
-    Vector<Player> players;
-     int currentTurn;
-     
+    Vector<Player> players; //KA
+     int currentTurn; //KA
+
   /*public static void main(String[] args) {
 
-    String message = hints();
+    S
     
   }*/
 
-  public static void startGame(){
+  public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
+       players.add(P);
        
   }
-  public static String hints(Vector<Card> Hand){
+  public static String hints(Vector<Card> Hand){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
       //will be fi
-      return "Hit"; 
+      int total = 0;
+      int indexReturn =0;
+      String hintMessages [] = {"Hit", "Stand", "Double", "Split"};
+      for(int i = 0; i < Hand.size();i++){
+         total+= Card.getCardLiteralValue(Hand.get(i).getCardValue());
+      }
+
+      if(total >=17){
+          indexReturn = 1;
+      }
+      return  hintMessages[indexReturn]; 
   }
 
   //clear the game/reset
