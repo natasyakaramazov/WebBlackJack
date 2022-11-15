@@ -5,6 +5,10 @@ class Game {
     String message = hints();
     
   }
+
+  public static void startGame(){
+       
+  }
   public static String hints(){
       //will be filled with gamelogic
       return "Hit"; 
