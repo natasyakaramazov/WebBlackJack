@@ -2,7 +2,15 @@ body{
     background-color: black;
 }
 .fix{
-    position:fixed;
+    position:sticky;
     bottom:0px;
     left:50%;
+}
+
+h2{
+    color:white
+   
+} 
+h2{
+    font-size: 40px;
 }
