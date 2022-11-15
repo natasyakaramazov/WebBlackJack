@@ -2,11 +2,30 @@ body{
     background-color: black;
 }
 .fix{
-    position:sticky;
+    position:absolute;
     bottom:0px;
     left:50%;
 }
-
+.fix2{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+}
+.fix3{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+}
+.fix4{
+    position:absolute;
+    bottom:60px;
+    left:50%;
+}
+.fix5{
+    position:absolute;
+    bottom:80px;
+    left:50%;
+}
 h2{
     color:white
    
