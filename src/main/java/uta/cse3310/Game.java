@@ -1,16 +1,22 @@
 package uta.cse3310;
+import java.util.Vector;
+import uta.cse3310.Event.EventType;
 class Game {
-  public static void main(String[] args) {
+
+    Vector<Player> players;
+     int currentTurn;
+     
+  /*public static void main(String[] args) {
 
     String message = hints();
     
-  }
+  }*/
 
   public static void startGame(){
        
   }
-  public static String hints(){
-      //will be filled with gamelogic
+  public static String hints(Vector<Card> Hand){
+      //will be fi
       return "Hit"; 
   }
 
@@ -18,7 +24,9 @@ class Game {
   public static void clear(){
     
   }
+public void Update(EventType E){
 
+}
   //returns an array of numbers dependent on the wins and losses
   public static int[] declareWin(){
      int winsLoss [] = {1,0,1};

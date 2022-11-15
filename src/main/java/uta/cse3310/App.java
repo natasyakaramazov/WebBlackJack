@@ -61,9 +61,9 @@ import com.google.gson.GsonBuilder;
 public class App extends WebSocketServer {
   // All games currently underway on this server are stored in
   // the vector ActiveGames
-  Vector<Game> ActiveGames = new Vector<Game>();
-
-  int GameId = 1;
+  Vector<Game> OngoingGames = new Vector<Game>();
+   private int playerCount;
+  int GameIdNum;
 
   public App(int port) {
     super(new InetSocketAddress(port));
