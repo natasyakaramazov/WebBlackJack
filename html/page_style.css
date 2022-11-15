@@ -8,23 +8,23 @@ body{
 }
 .fix2{
     position:absolute;
-    bottom:20px;
-    left:50%;
+    bottom:0px;
+    left:45%;
 }
 .fix3{
     position:absolute;
-    bottom:40px;
-    left:50%;
+    bottom:0px;
+    left:40%;
 }
 .fix4{
     position:absolute;
-    bottom:60px;
-    left:50%;
+    bottom:0px;
+    left:35%;
 }
 .fix5{
     position:absolute;
-    bottom:80px;
-    left:50%;
+    bottom:0px;
+    left:30%;
 }
 h2{
     color:white
