@@ -58,6 +58,8 @@ import java.util.Vector;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import uta.cse3310.Event.EventType;
+
 public class App extends WebSocketServer {
   // All games currently underway on this server are stored in
   // the vector ActiveGames
@@ -209,7 +211,13 @@ public class App extends WebSocketServer {
 
   @Override
   public void onMessage(WebSocket conn, ByteBuffer message) {
+  
+    synchronized (mutex) {
+      broadcast(message.array());
+    }
     System.out.println(conn + ": " + message);
+  
+
   }
 
   @Override
@@ -218,6 +226,22 @@ public class App extends WebSocketServer {
     if (conn != null) {
       // some errors like port binding failed may not be assignable to a specific
       // websocket
+    }
+  }
+
+
+  public class upDate extends TimerTask {
+    @Override
+    public void run() {    
+ EventType SomethingHappens = EventType.HIT; /*This is a placeholder */
+      if (newGame != null) {
+        synchronized (mutex) {
+        }
+        if (newGame.Update(SomethingHappens)) {
+
+          broadcast(newGame.exportStateAsJSON());
+        }
+      }
     }
   }
 
