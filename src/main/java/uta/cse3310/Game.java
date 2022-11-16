@@ -59,7 +59,29 @@ public class Game {
   public static void clear(){
     
   }
-public void Update(EventType E){
+public  boolean Update(EventType E){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
+switch(E){
+    case HIT:
+        
+    break;
+
+    case STAND:
+    break;
+
+    case NAME:
+    break;
+
+
+    case SPLIT:
+    break;
+
+    case BET:
+    break;
+
+    case FOLD:
+    break;
+}
+return false;
 
 }
   //returns an array of numbers dependent on the wins and losses
