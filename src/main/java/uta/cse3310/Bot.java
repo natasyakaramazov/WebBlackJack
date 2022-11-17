@@ -1,13 +1,25 @@
 /*Greg Jolly */
-package uta.cse3310; 
+package uta.cse3310;
+
+import java.util.Vector;
 
 public class Bot {
-    int amountwon = 0;
-    int initalAmountWon = 200; 
-    
-    
-		public enum status{
-			NORMAL, HIGHRISK, MINIMALRISK
+
+    int amountwon = 5000; //intial amount that bot has
+   
+    //the hand of the bot
+    Vector <Card> bHand = new Vector <Card>(); //Created by Greg Jolly; Last Edited by Greg Jolly
+
+    //logic check of the bot 
+    void logicCheck(){  //Created by Greg Jolly; Last Edited by Greg Jolly
+      
+    }
+
+    //status of that dictates whether the bot should bet or not 
+
+		public enum status{ //Created by Greg Jolly; Last Edited by Greg Jolly
+			
+      NORMAL, HIGHRISK, MINIMALRISK
 		
     }
 }
