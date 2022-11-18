@@ -133,15 +133,27 @@ console.log("Message received: ");
       name: document.getElementById("sendName").value,
       playerID: playerID
     };
+
+    
     connection.send(JSON.stringify(msg));
     console.log(JSON.stringify(msg));
 
 
-    // this shows how to hide html elements.
-    // like when the name is entered
-    //  it might be better to hide after the server has accepted it
-    // but this is just a demonstration
+    
+/*This is me trying to add functionality to our Hit button
+but I'm not sure if I'm doing it right because "E" isn't being recognized as a new variable*/
 
+    let btn = document.createElement("button");
+   btn.innerHTML = "Hit";
+   btn.onclick = function (i) {
+    E = new Event();
+        E.EventType = HIT;
+        Update(E.EventType);
+        
+
+
+};
+document.body.appendChild(btn);
     var x = document.getElementById("nameInput");
     if (x.style.display === "none") {
       x.style.display = "block";
