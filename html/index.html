@@ -25,12 +25,18 @@
   <img id="card2" src="3D.svg" width="150px" class="fix2">
  
 
-  <button type="button" >Bet</button>
-  <button type="button">Hit</button>
+  <div id ="hitInput">
+   <button onclick="functionToExecute(this)">Hit</button>
+    
+  </div>
+  <
   <button type="button">Split</button>
   <button type="button">Fold</button>
 
-  <div id="textbox"></div>
+  <div id="testBeforeImplement">
+
+
+  </div>
 
 
 </body>
@@ -67,8 +73,9 @@ console.log("Message received: ");
 
       playerID = obj.Id;
       console.log("player ID = " + playerID);
-      document.getElementById("textbox").innerText =
-        document.getElementById("textbox").innerText + '\n\n' + "Player ID is " + playerID;
+      let header = document.querySelector("h2");
+      header.innerText = "You are Player" + playerID;
+      
     }
     else {
       const suite_to_char = new Map();
@@ -143,13 +150,12 @@ console.log("Message received: ");
 /*This is me trying to add functionality to our Hit button
 but I'm not sure if I'm doing it right because "E" isn't being recognized as a new variable*/
 
-    let btn = document.createElement("button");
-   btn.innerHTML = "Hit";
-   btn.onclick = function (i) {
+
+     function functionToExecute(eventType){
     E = new Event();
-        E.EventType = HIT;
+        E.EventType = 
         Update(E.EventType);
-        
+     }
 
 
 };
@@ -158,9 +164,9 @@ document.body.appendChild(btn);
     if (x.style.display === "none") {
       x.style.display = "block";
     } else {
-      x.style.display = "none";
+      x.style.display = "inline";
     }
 
-  }
+  
 
 </script>

@@ -1,10 +1,13 @@
 package uta.cse3310;
 import java.util.Vector;
 import uta.cse3310.Event.EventType;
+import uta.cse3310.Card;
+import uta.cse3310.Deck;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 public class Game {
+     Deck D = new Deck();
 
     Vector<Player> players; //KA
      int currentTurn; //KA
@@ -62,6 +65,11 @@ public class Game {
 public  boolean Update(EventType E){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
 switch(E){
     case HIT:
+      /*  Access Players Vector, Identify current player by currentTurn 
+                  Then Accesses the Player's Hand
+                   Adds a Card to the Hand 
+                        Kierra Ashford                    */
+      players.get(currentTurn).pHand.add(D.getCard());
         
     break;
 
