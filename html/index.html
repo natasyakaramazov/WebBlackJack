@@ -29,7 +29,7 @@
    <button onclick="functionToExecute(this)">Hit</button>
     
   </div>
-  <
+  
   <button type="button">Split</button>
   <button type="button">Fold</button>
 
@@ -109,7 +109,7 @@ console.log("Message received: ");
         if (playerID == player.Id) {
 
           var i = 0;
-          for (const card of player.Cards) {
+          for (const card of player.Card) {
             console.log("Card =" + card.suite + "  " + card.value);
 
             var filename = value_to_char.get(card.value) + suite_to_char.get(card.suite) + ".svg";
@@ -152,9 +152,10 @@ but I'm not sure if I'm doing it right because "E" isn't being recognized as a n
 
 
      function functionToExecute(eventType){
-    E = new Event();
-        E.EventType = 
+          E = new Event();
+        E.EventType = EventType.valueOf(eventType);
         Update(E.EventType);
+
      }
 
 
