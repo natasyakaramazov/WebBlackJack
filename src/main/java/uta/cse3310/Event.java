@@ -43,8 +43,22 @@ return index;
     //doubles the bet of the player that calls it
   }
   
+  public void hit() /*Created by Alexander Jones, Last Edited by Alexander Jones */
+  { 
+    //gives player another card
+    
+  }
+  
+  public void fold() /*Created by Alexander Jones, Last Edited by Alexander Jones */
+  {
+    //player surrenders hand
+  }
 
-  
-  
+  public void bet() /*Created by Alexander Jones, Last Edited by Alexander Jones */
+  {
+    //player puts money into pot
+  }
+
+
   
 }
