@@ -13,6 +13,7 @@ public class Player{
     int amountWon = 0;
     String name;  
     String LastMessageToPlayer;
+    int playerID;
 
     // the hand of the player
     

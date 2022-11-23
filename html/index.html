@@ -21,8 +21,8 @@
     </p>
   </div>
 
-  <img id="bottom" src="3C.svg" width= "150px" class="fix">
-  <img id="card2" src="3D.svg" width="150px" class="fix2">
+  <img id="bottom" src="filename" width= "150px" class="fix">
+  <img id="card2" src="filename" width="150px" class="fix2">
  
 
   <div id ="hitInput">
@@ -58,7 +58,7 @@ console.log("open");
 }
 
 var cardIdx = 0;
-var playerID = 0;
+var playerID = 5;
 
 connection.onmessage = function (evt){
 
@@ -71,10 +71,10 @@ console.log("Message received: ");
   const obj = JSON.parse(msg);
     if (!obj.players) {
 
-      playerID = obj.Id;
+      playerID = obj.playerID; + 1;
       console.log("player ID = " + playerID);
       let header = document.querySelector("h2");
-      header.innerText = "You are Player" + playerID;
+      header.innerText = "You are Player " + playerID;
       
     }
     else {
@@ -99,14 +99,14 @@ console.log("Message received: ");
       value_to_char.set("JACK", "J");
       value_to_char.set("QUEEN", "Q");
       value_to_char.set("KING", "K");
-
+    playerID++;
  console.log("dumping game state")
       for (const player of obj.players) {
         console.log("id =" + player.Id);
         console.log("name =" + player.name);
 
         // only show the cards for this player
-        if (playerID == player.Id) {
+        if (playerID == player.playerID) {
 
           var i = 0;
           for (const card of player.Card) {

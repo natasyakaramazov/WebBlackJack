@@ -58,7 +58,7 @@ public  static int getCardLiteralValue(CardValue v){ /*Created by Kierra Ashford
 /*Creating an Enum map for the values of the cards */
 EnumMap<CardValue, Integer> values = new EnumMap<>(CardValue.class);
 
-    values.put(CardValue.Ace, 1);
+    values.put(CardValue.Ace, 11);
     values.put(CardValue.Eight,8);
     values.put(CardValue.Five,5);
     values.put(CardValue.Four,4);

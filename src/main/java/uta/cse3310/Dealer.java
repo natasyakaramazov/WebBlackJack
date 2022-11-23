@@ -32,7 +32,10 @@ public class Dealer
                 // allow players to call for insurance
             }
         }
-        choice.hit();
+        choice.hit();/*  Event dealer = new Event();
+                          dealer.EventType = Hit;
+                               Update(dealer);
+                            */
         dealerhandsize();
 
         while (dealerhandamount != 21)
