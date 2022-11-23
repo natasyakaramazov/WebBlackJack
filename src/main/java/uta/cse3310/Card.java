@@ -53,6 +53,7 @@ public CardValue getCardValue(){  /*Created by Kierra Ashford, Last Edited by Ki
     return  cardvalue;
 }
 
+
 public  static int getCardLiteralValue(CardValue v){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
     int returnValue;
 /*Creating an Enum map for the values of the cards */
