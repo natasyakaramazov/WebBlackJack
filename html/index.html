@@ -29,9 +29,16 @@
    <button onclick="functionToExecute(this)">Hit</button>
     
   </div>
+  <div id = "splitInput">
+   <button onclick="functionToExecute(this)">Split</button>
+  </div>
+  <div id = "foldInput">
+    <button onclick="functionToExecute(this)">Fold</button>
+   </div>
+   <div id = "betInput">
+    <button onclick="functionToExecute(this)">Bet</button>
+   </div>
   
-  <button type="button">Split</button>
-  <button type="button">Fold</button>
 
   <div id="testBeforeImplement">
 
@@ -58,23 +65,23 @@ console.log("open");
 }
 
 var cardIdx = 0;
-var playerID = 5;
+var playerID = 0;
 
-connection.onmessage = function (evt){
+connection.onmessage = function (evt){//not quite sure what evt is and thus I'm not really sure what evt.data is and what that makes msg
 
 var msg;
 msg = evt.data;
 
 console.log("Message received: ");
-//document.getElementById("textbook").innerText = document.getElementById("textbox").innerText + '\n\n' + "Message Received + "\n" + msg;
 
-  const obj = JSON.parse(msg);
+
+  const obj = JSON.parse(msg); //This makes an obj out of what Json parses from msg
     if (!obj.players) {
 
       playerID = obj.playerID; + 1;
       console.log("player ID = " + playerID);
       let header = document.querySelector("h2");
-      header.innerText = "You are Player " + playerID;
+      header.innerText = "You are Player " + playerID; //now this message acts as a debug, it's showing on our website right now so it must mean the obj is not a game with players?
       
     }
     else {
@@ -109,10 +116,10 @@ console.log("Message received: ");
         if (playerID == player.playerID) {
 
           var i = 0;
-          for (const card of player.Card) {
-            console.log("Card =" + card.suite + "  " + card.value);
+          for (const card of player.pHand) {
+            console.log("Card =" + card.cardsuit + "  " + card.cardvalue);
 
-            var filename = value_to_char.get(card.value) + suite_to_char.get(card.suite) + ".svg";
+            var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuite) + ".svg";
             var element = "card" + (i + 1);
 
             document.getElementById(element).src = filename;
@@ -156,8 +163,9 @@ but I'm not sure if I'm doing it right because "E" isn't being recognized as a n
         E.EventType = EventType.valueOf(eventType);
         Update(E.EventType);
 if(E.EventType == HIT){
-       filename = value_to_char.get
-}   
+       filename = value_to_char.get(pHand.lastElement().cardvalue) + suite_to_char.get(pHand.lastElement().cardsuit);
+       
+       }   
   }
 
 

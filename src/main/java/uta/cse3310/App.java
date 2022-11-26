@@ -178,7 +178,7 @@ public class App extends WebSocketServer {
 
   @Override
   public void onMessage(WebSocket conn, String message) {
-    System.out.println(conn + ": " + message);
+  
 
     synchronized (mutex) {
       // all incoming messages are processed by the game
@@ -190,31 +190,15 @@ public class App extends WebSocketServer {
     }
     System.out.println(conn + ": " + message);
   }
-    // Bring in the data from the webpage
-    // An Event is all that is allowed at this point
-  /*   GsonBuilder builder = new GsonBuilder();
-    Gson gson = builder.create();
-    Event.EventType E = gson.fromJson(message, Event.EventType.class); */
-    //System.out.println(U.Button);
-
-    // Get our Game Object
-    //Game G = conn.getAttachment();
-    //G.Update(U);
-
-    // send out the game state every time
-    // to everyone
-   // String jsonString;
-    //jsonString = gson.toJson(G);
-
-   // System.out.println(jsonString);
-    //broadcast(jsonString);  }
-
+   
   @Override
   public void onMessage(WebSocket conn, ByteBuffer message) {
   
     synchronized (mutex) {
       broadcast(message.array());
     }
+
+      
     System.out.println(conn + ": " + message);
   
 
