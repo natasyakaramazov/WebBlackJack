@@ -25,6 +25,11 @@ public class Player{
 
     }   
 
+    public Player()
+    {
+
+    }
+
     //logic check of the player
 
     /*public void logicCheck() //Created by Greg Jolly; Last Edited by Greg Jolly
