@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 public class Game {
      Deck D = new Deck();
+     Vector<Card> removedCards; //LT
 
     Vector<Player> players; //KA
      int currentTurn; //KA
@@ -35,7 +36,13 @@ public class Game {
   }
 
   public void removePlayer(int indexOfPlayer){
-     players.remove(indexOfPlayer - 1);
+    //Added by Logan Thresher
+    for (int i = 0; i < players.elementAt((indexOfPlayer - 1)).pHand.size(); ++i) //Adds every card from the player to the removedCards vector
+    {
+      removedCards.add(players.elementAt((indexOfPlayer - 1)).pHand.elementAt(i));
+    }
+    
+    players.remove(indexOfPlayer - 1);
   }
   
 
