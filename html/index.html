@@ -81,7 +81,7 @@ console.log("Message received: ");
   const obj = JSON.parse(msg); //This makes an obj out of what Json parses from msg
     if (!obj.players) {
 
-      playerID = obj.playerID; + 1;
+      playerID = obj.playerID + 1;
       console.log("player ID = " + playerID);
       let header = document.querySelector("h2");
       header.innerText = "You are Player " + playerID; //now this message acts as a debug, it's showing on our website right now so it must mean the obj is not a game with players?
