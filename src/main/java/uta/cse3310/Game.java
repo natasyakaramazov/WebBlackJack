@@ -3,7 +3,8 @@ import java.util.Vector;
 import uta.cse3310.Event.EventType;
 import uta.cse3310.Card;
 import uta.cse3310.Deck;
-
+import uta.cse3310.Player;
+import uta.cse3310.Dealer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 public class Game {
@@ -11,7 +12,8 @@ public class Game {
 
     Vector<Player> players; //KA
      int currentTurn; //KA
-
+    Dealer dealer = new Dealer();
+   
   /*public static void main(String[] args) {
 
     S
@@ -24,6 +26,10 @@ public class Game {
 }
 
   public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
+       
+       
+       P.pHand.add(0,D.getCard());
+       P.pHand.add(1,D.getCard());
        players.add(P);
        
   }
@@ -31,7 +37,22 @@ public class Game {
   public void removePlayer(int indexOfPlayer){
      players.remove(indexOfPlayer - 1);
   }
-  public void processMessage(String msg) { /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
+  
+
+  public int split(Vector <Card> Hand){
+   int index = 1917; 
+   for(int i = 0; i< Hand.size(); i++){
+  /* if(Hand[i].getValue())== CardSuit.Ten){
+          returns index of player's hand to make a bet*
+          r
+  } */
+   }      
+return index;
+    //splits the card, starts a new bet
+  }
+  
+
+    public void processMessage(String msg) { /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
 
     GsonBuilder builder = new GsonBuilder();
     Gson gson = builder.create();
@@ -69,24 +90,35 @@ switch(E){
                   Then Accesses the Player's Hand
                    Adds a Card to the Hand 
                         Kierra Ashford                    */
+                        if(players.get(currentTurn).playerID == 0){
+                          
+                        }
       players.get(currentTurn).pHand.add(D.getCard());
         
     break;
 
     case STAND:
+      currentTurn = currentTurn++;
     break;
 
     case NAME:
+    /*will have input bar as shown on front end*/
     break;
 
 
     case SPLIT:
+
+         int toBeSplit = split(players.get(currentTurn).pHand);
     break;
 
     case BET:
+              
     break;
 
     case FOLD:
+           removePlayer(currentTurn);     
+                 currentTurn = currentTurn++;
+
     break;
 }
 return false;

@@ -27,13 +27,13 @@ public class Player{
 
     //logic check of the player
 
-    public void logicCheck() //Created by Greg Jolly; Last Edited by Greg Jolly
+    /*public void logicCheck() //Created by Greg Jolly; Last Edited by Greg Jolly
     {
         while(true)
         {
             
         }
-    }
+    }*/
 
     //sets the player name
     public void SetName(String N) { //Created by KIerra Ashford; Last Edited by Kierra Ashford

@@ -4,35 +4,36 @@
 package uta.cse3310;
 import java.util.Vector;
 import java.util.Random;
+import uta.cse3310.Game;
 
-
-public class Dealer
+public class Dealer extends Player
 {
     int playerID = 0;                                   // Dealer playerID will always be 0
     int amountWon = 0;                                 //  Amount of money won by the dealer
     int dealerhandamount;                             //   The total amount of cards the dealer value will hold
     int randnumber;                                  //    Integer value that will store random number
     int i = 0;                                      //     Incrimentor
-    Event choice;                                  //      What choices the dealer will make
+    Event.EventType choice;                                  //      What choices the dealer will make
     Vector<Card> dealerhand = new Vector<Card>(); //       What will hold the dealers cards
     //Vector hand = new Vector();
-
-    Dealer() /*Created by Alexander Jones, Last Edited by Alexander Jones */
+         
+  public Dealer() /*Created by Alexander Jones, Last Edited by Alexander Jones */
     { 
         Card tempCard = new Card();
         dealerhand.add(tempCard);
         
-        
+          //choice.HIT;
 
         if(dealerhand.size() == 0)
         {
-            choice.hit();
+            
             if (tempCard.getCardValue() == CardValue.Ace)
             {
                 // allow players to call for insurance
             }
         }
-        choice.hit();/*  Event dealer = new Event();
+       // choice.hit();     
+       /*  Event dealer = new Event();
                           dealer.EventType = Hit;
                                Update(dealer);
                             */
@@ -40,7 +41,7 @@ public class Dealer
 
         while (dealerhandamount != 21)
         {
-            logicCheck();
+            //logicCheck();
         }
 
 
@@ -79,11 +80,11 @@ public class Dealer
         {
             if(randnumber < 5)                 // random number between 1-7, if you get a value less then 5, then stay, but if you get a value more than 5, chance it
             {
-                choice.stand();
+                //choice.STAND;
             }
             else
             {
-                choice.hit();
+                //choice.HIT;
             }
 
         }
