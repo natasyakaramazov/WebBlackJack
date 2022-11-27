@@ -38,15 +38,15 @@
   <div id = "foldInput">
     <button onclick="functionToExecute(this)">Fold</button>
    </div>
-   <div id = "betInput">
-    <button onclick="functionToExecute(this)">Bet</button>
-   </div>
+   
+   <div id="betInput">
+    <p>name: <input id="sendBet" type="text">
+      <input type="button" name="sendBet" value="Bet" onclick="sendBet()">
+    </p>
+  </div>
+
   
 
-  <div id="testBeforeImplement">
-
-
-  </div>
 
 
 </body>
@@ -150,7 +150,13 @@ console.log("Message received: ");
       name: document.getElementById("sendName").value,
       playerID: playerID
     };
-
+function sendBet(){
+       var msg = {
+         event: "BET",
+         bet: document.getElementById("sendBet").value,
+         amount: amount    
+       };
+}
     
     connection.send(JSON.stringify(msg));
     console.log(JSON.stringify(msg));
