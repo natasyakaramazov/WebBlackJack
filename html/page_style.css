@@ -13,13 +13,13 @@ body{
 }
 .fix3{
     position:absolute;
-    bottom:0px;
+    top:0px;
     left:40%;
 }
 .fix4{
     position:absolute;
-    bottom:0px;
-    left:35%;
+    top:0px;
+    left:10%;
 }
 .fix5{
     position:absolute;
