@@ -37,7 +37,7 @@
  */
 
 package uta.cse3310;
-
+import uta.cse3310.Game;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -90,27 +90,32 @@ public class App extends WebSocketServer {
 
     System.out.println(conn.getRemoteSocketAddress().getAddress().getHostAddress() + " connected");
       
+    if(playerCount ==0){
+       System.out.println("A new game begins");
+        //newGame = new Game();
+        newGame = new Game();
+       
+       System.out.println("Game object has been made");
+    }
     playerCount = playerCount +1;
+    System.out.println("before making the new player " + playerCount);
     Player player = new Player(playerCount);/*Every time there's a new connection, player count increases, that
     s their id number - Kierra Ashford */
 
-    if(playerCount ==0){
-       System.out.println("A new game begins");
-        newGame = new Game();
-       
-    }
 
     conn.setAttachment(playerCount);
 
     conn.send(player.asJSONString());
-    synchronized (mutex) {
+    //synchronized (mutex) {
+      System.out.println("the player is "+player);
+      System.out.println("the newgame is "+newGame);
       newGame.addPlayer(player);
-    }
+    //}
     /*Sends Game Stae Everywhere */
-    synchronized (mutex) {
+    //synchronized (mutex) {
       broadcast(newGame.exportStateAsJSON());
       System.out.println("the game state" +newGame.exportStateAsJSON());
-    }
+    //}
   }
 
 

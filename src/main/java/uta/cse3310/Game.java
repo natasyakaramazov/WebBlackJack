@@ -8,13 +8,21 @@ import uta.cse3310.Dealer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 public class Game {
-     Deck D = new Deck();
+     Deck D;
      Vector<Card> removedCards; //LT
 
     Vector<Player> players; //KA
-     int currentTurn; //KA
-    Dealer dealer = new Dealer();
-   
+    int currentTurn; //KA
+    Dealer dealer; //= new Dealer();
+  
+    public Game()
+    { 
+       D = new Deck();
+       dealer = new Dealer();
+       removedCards = new Vector<Card>();
+       players =  new Vector<Player>();
+       System.out.println("hey! i am in the Game constructor");
+    } 
   /*public static void main(String[] args) {
 
     S
@@ -28,7 +36,7 @@ public class Game {
 
   public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
        
-       
+        
        P.pHand.add(0,D.getCard());
        P.pHand.add(1,D.getCard());
        players.add(P);

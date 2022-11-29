@@ -8,18 +8,19 @@ import uta.cse3310.Game;
 
 public class Dealer extends Player
 {
-    int playerID = 0;                                   // Dealer playerID will always be 0
-    int amountWon = 0;                                 //  Amount of money won by the dealer
+    //int playerID = 0;                                   // Dealer playerID will always be 0
+    //int amountWon = 0;                                 //  Amount of money won by the dealer
     int dealerhandamount;                             //   The total amount of cards the dealer value will hold
     int randnumber;                                  //    Integer value that will store random number
     int i = 0;                                      //     Incrimentor
     Event.EventType choice;                                  //      What choices the dealer will make
-    Vector<Card> dealerhand = new Vector<Card>(); //       What will hold the dealers cards
+    Vector<Card> dealerhand;                        //       What will hold the dealers cards
     //Vector hand = new Vector();
          
   public Dealer() /*Created by Alexander Jones, Last Edited by Alexander Jones */
     { 
         Card tempCard = new Card();
+        dealerhand = new Vector<Card>(); //       What will hold the dealers cards
         dealerhand.add(tempCard);
         
           //choice.HIT;
@@ -39,10 +40,10 @@ public class Dealer extends Player
                             */
         dealerhandsize();
 
-        while (dealerhandamount != 21)
-        {
-            //logicCheck();
-        }
+        //while (dealerhandamount != 21)
+        //{
+        //    //logicCheck();
+        //}
 
 
     }

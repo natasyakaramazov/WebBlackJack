@@ -21,7 +21,7 @@
     </p>
   </div>
 
-  <img id="bottom" src="filename" width= "150px" class="fix">
+  <img id="bottom" src="AD.svg" width= "150px" class="fix">
   <img id="card2" src="AD.svg" width="150px" class="fix2">
 
   <img id="right" src="9C.svg" width= "150px" class="fix3">
@@ -29,7 +29,7 @@
 
   <div id ="hitInput">
   
-   <button id="button" onclick="functionToExecute(this)">Hit</button>
+   <button id="hitbutton" onclick="functionToExecute('Hit')">Hit</button>
 
   </div>
   <div>
@@ -58,10 +58,14 @@
 
 <script type="text/javascript">
 
+class UserEvent {
+     EventType = 'HIT';
+}
 var connection = null;
 var serverURL;
 
-serverUrl = "ws://" + window.location.hostname + ":9881";
+//serverUrl = "ws://" + window.location.hostname + ":9881";
+serverUrl = "ws://" + "localhost" + ":9881";
 
 connection = new WebSocket(serverUrl);
 connection.onopen = function(evt){
@@ -162,37 +166,35 @@ function sendBet(){
          bet: document.getElementById("sendBet").value,
          amount: amount    
        };
-}
     
     connection.send(JSON.stringify(msg));
     console.log(JSON.stringify(msg));
 
+}
 
     
 /*This is me trying to add functionality to our Hit button
 but I'm not sure if I'm doing it right because "E" isn't being recognized as a new variable*/
 
 
-     function functionToExecute(eventType){
-      console.log(eventType);
-          E = new Event();
-        E.EventType = EventType.valueOf(eventType);
-        Update(E.EventType);
-if(E.EventType == HIT){
-       filename = value_to_char.get(pHand.lastElement().cardvalue) + suite_to_char.get(pHand.lastElement().cardsuit);
-       
-       }   
-  }
+     function functionToExecute(s) {
+          E = new UserEvent();
+          if (s=="Hit") {
+             E.EventType = "HIT";
+          }
+          connection.send(JSON.stringify(E));
+          console.log(JSON.stringify(E));
+      }   
 
 
 
-document.body.appendChild(btn);
-    var x = document.getElementById("nameInput");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "inline";
-    }
+//document.body.appendChild(btn);
+//    var x = document.getElementById("nameInput");
+//    if (x.style.display === "none") {
+//      x.style.display = "block";
+//    } else {
+//      x.style.display = "inline";
+//    }
 
   
 

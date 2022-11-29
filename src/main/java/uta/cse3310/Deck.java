@@ -6,12 +6,15 @@ import java.util.Random;
 public class Deck
 {
 	static int DECKS = 1; //Number of decks
-	Vector<Card> deck = new Vector<Card>();
-	Random rand = new Random();
+	//static int DECKS = 1; //Number of decks
+	Vector<Card> deck;
+	Random rand;
 	
 	//Initializes a deck with all cards
-	Deck()
+	public Deck()
 	{
+	   deck = new Vector<Card>();
+	   rand = new Random();
 		for (int i = 0; i < (DECKS); ++i)
         {
             for (int j = 0; j < 4; ++j)
@@ -98,7 +101,7 @@ public class Deck
 	}
 	
 	//Returns the card at the end of the deck, returns the card
-	Card getCard()
+	public Card getCard()
 	{
 		Card temp = deck.elementAt(deck.size() - 1);
         deck.remove(deck.size() - 1);
