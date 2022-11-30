@@ -44,7 +44,7 @@
    </div>
 
    <div id = "hintInput">
-    <button onclick="functionToExectue(this)">Hint</button>
+    <button onclick="functionToExecute(this)">Hint</button>
   </div>
 
    <div id="betInput">
@@ -69,8 +69,8 @@ class UserEvent {
 var connection = null;
 var serverURL;
 
-//serverUrl = "ws://" + window.location.hostname + ":9881";
-serverUrl = "ws://" + "localhost" + ":9881";
+serverUrl = "ws://" + window.location.hostname + ":9881";
+//serverUrl = "ws://" + "localhost" + ":9881";
 
 connection = new WebSocket(serverUrl);
 connection.onopen = function(evt){
