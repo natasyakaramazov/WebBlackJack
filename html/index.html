@@ -27,21 +27,26 @@
   <img id="right" src="9C.svg" width= "150px" class="fix3">
   <img id="card2" src="AH.svg" width="150px" class="fix4">
 
-  <div id ="hitInput">
-  
+  <div id = "hitInput">
    <button id="hitbutton" onclick="functionToExecute('Hit')">Hit</button>
-
   </div>
-  <div>
+
+  <div id = "standInput">
    <button onclick="functionToExecute(this)">Stand</button>
   </div>
+
   <div id = "splitInput">
    <button onclick="functionToExecute(this)">Split</button>
   </div>
+
   <div id = "foldInput">
     <button onclick="functionToExecute(this)">Fold</button>
    </div>
-   
+
+   <div id = "hintInput">
+    <button onclick="functionToExectue(this)">Hint</button>
+  </div>
+
    <div id="betInput">
     <p>name: <input id="sendBet" type="text">
       <input type="button" name="sendBet" value="Bet" onclick="sendBet()">
