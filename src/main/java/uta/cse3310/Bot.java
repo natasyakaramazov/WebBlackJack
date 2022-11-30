@@ -3,12 +3,12 @@ package uta.cse3310;
 
 import java.util.Vector;
 
-public class Bot {
+public class Bot extends Player{
 
-    int amountwon = 5000; //intial amount that bot has
+    //int amountwon = 5000; //intial amount that bot has
    
     //the hand of the bot
-    Vector <Card> bHand = new Vector <Card>(); //Created by Greg Jolly; Last Edited by Greg Jolly
+    //Vector <Card> bHand = new Vector <Card>(); //Created by Greg Jolly; Last Edited by Greg Jolly
 
     //logic check of the bot 
     void logicCheck(){  //Created by Greg Jolly; Last Edited by Greg Jolly

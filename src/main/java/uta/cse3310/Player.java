@@ -17,7 +17,7 @@ public class Player{
 
     // the hand of the player
     
-    Vector <Card> pHand = new Vector<Card>(); //Created by Greg Jolly, Last Edited by Greg Jolly
+    Vector <Card> pHand; //Created by Greg Jolly, Last Edited by Greg Jolly
       
         //player id 
     public Player(int id) //Created by Kierra Ashford; Last edited by Kierra Ashford 
@@ -27,7 +27,7 @@ public class Player{
 
     public Player()
     {
-
+        pHand = new Vector<Card>();
     }
 
     //logic check of the player
