@@ -3,23 +3,23 @@ body{
 }
 .fix{
     position:absolute;
-    bottom:0px;
+    bottom:200px;
     left:50%;
 }
 .fix2{
     position:absolute;
-    bottom:0px;
-    left:30%;
+    bottom:200px;
+    left:42%;
 }
 .fix3{
     position:absolute;
-    top:0px;
-    left:40%;
+    top:100px;
+    left:50%;
 }
 .fix4{
     position:absolute;
-    top:0px;
-    left:10%;
+    top:100px;
+    left:42%;
 }
 .fix5{
     position:absolute;
@@ -35,18 +35,64 @@ body{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-  }
-  
+}
+#nameInput
+{
+    text-align: absolute;
+}
+#betInput
+{
+    text-align: absolute;
+    position: absolute;
+    bottom: 4px;
+    left: 635px;
+}
+#hitInput  
+{
+    text-align: absolute;
+    position: absolute;
+    bottom: 20px;
+    left: 933px;
+}
+#standInput  
+{
+    position: absolute;
+    bottom: 20px;
+    left: 965px;  
+}
+#foldInput
+{
+    position: absolute;
+    bottom: 20px;
+    left: 1015px;
+}
+#splitInput
+{
+    position: absolute;
+    bottom: 20px;
+    left: 1058px;
+}
+#hintInput
+{
+    position: absolute;
+    bottom: 20px;
+    left: 1100px;
+}  
 h2{
     color:white
    
 } 
 h2{
     font-size: 40px;
+    position:absolute; /* To revert back to it being in center delete these last 2 lines*/
+    top: 20px;
 }
 h3{
     color:white
 }
 h3{
     font-size:xx-large;
+    position:absolute; /* To revert back to it being in center delete these last 2 lines*/
+    top: 20px;
+    left:500px
 }
