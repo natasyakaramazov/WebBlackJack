@@ -15,17 +15,13 @@
 <h3><p style="text-align: right;">Dealer:</p></h3>
 <body>
 
-  <div id="nameInput">
-    <p>name: <input id="sendName" type="text">
-      <input type="button" name="sendName" value="Name" onclick="sendName()">
-    </p>
-  </div>
+  
 
-  <img id="bottom" src="AD.svg" width= "150px" class="fix">
+  <img id="card1" src="AD.svg" width= "150px" class="fix">
   <img id="card2" src="AD.svg" width="150px" class="fix2">
 
-  <img id="right" src="9C.svg" width= "150px" class="fix3">
-  <img id="card2" src="AH.svg" width="150px" class="fix4">
+  <img id="card3" src="9C.svg" width= "150px" class="fix3">
+  <img id="card4" src="AH.svg" width="150px" class="fix4">
 
   <div id = "hitInput">
    <button id="hitbutton" onclick="functionToExecute('Hit')">Hit</button>
@@ -94,13 +90,15 @@ console.log("Message received: ");
   const obj = JSON.parse(msg); //This makes an obj out of what Json parses from msg
     if (!obj.players) {
 
-      playerID = obj.playerID + 1;
+      p
       console.log("player ID = " + playerID);
-      let header = document.querySelector("h2");
-      header.innerText = "You are Player " + playerID; //now this message acts as a debug, it's showing on our website right now so it must mean the obj is not a game with players?
+     //now this message acts as a debug, it's showing on our website right now so it must mean the obj is not a game with players?
       
     }
-    else {
+    else { 
+      
+      let header = document.querySelector("h2");
+      header.innerText = "You are Player " + playerID; 
       const suite_to_char = new Map();
 
       suite_to_char.set("SPADES", "S");
@@ -109,23 +107,23 @@ console.log("Message received: ");
       suite_to_char.set("CLUBS", "C");
 
       const value_to_char = new Map();
-
-      value_to_char.set("TWO", "2");
-      value_to_char.set("THREE", "3");
-      value_to_char.set("FOUR", "4");
-      value_to_char.set("FIVE", "5");
-      value_to_char.set("SIX", "6");
-      value_to_char.set("SEVEN", "7");
-      value_to_char.set("EIGHT", "8");
-      value_to_char.set("NINE", "9");
-      value_to_char.set("TEN", "T");
-      value_to_char.set("JACK", "J");
-      value_to_char.set("QUEEN", "Q");
-      value_to_char.set("KING", "K");
-    playerID++;
+      value_to_char.set("Ace","A");
+      value_to_char.set("Two", "2");
+      value_to_char.set("Three", "3");
+      value_to_char.set("Four", "4");
+      value_to_char.set("Five", "5");
+      value_to_char.set("Six", "6");
+      value_to_char.set("Seven", "7");
+      value_to_char.set("Eight", "8");
+      value_to_char.set("Nine", "9");
+      value_to_char.set("Ten", "T");
+      value_to_char.set("Jack", "J");
+      value_to_char.set("Queen", "Q");
+      value_to_char.set("King", "K");
+   // playerID++;
  console.log("dumping game state")
       for (const player of obj.players) {
-        console.log("id =" + player.Id);
+        console.log("id =" + player.playerID);
         console.log("name =" + player.name);
 
         // only show the cards for this player
@@ -135,7 +133,7 @@ console.log("Message received: ");
           for (const card of player.pHand) {
             console.log("Card =" + card.cardsuit + "  " + card.cardvalue);
 
-            var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuite) + ".svg";
+            var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
             console.log(filename);
             var element = "card" + (i + 1);
 

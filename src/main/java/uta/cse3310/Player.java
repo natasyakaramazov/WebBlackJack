@@ -20,10 +20,7 @@ public class Player{
     Vector <Card> pHand; //Created by Greg Jolly, Last Edited by Greg Jolly
       
         //player id 
-    public Player(int id) //Created by Kierra Ashford; Last edited by Kierra Ashford 
-    {
-
-    }   
+    
 
     public Player()
     {
