@@ -68,16 +68,39 @@ return index;
   
 
     public void processMessage(String msg) { /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
+    System.out.println(msg);
 
     GsonBuilder builder = new GsonBuilder();
     Gson gson = builder.create();
     // take the string we just received, and turn it into a user event
-    Event SomethingHappens = gson.fromJson(msg, Event.class);
-
-    if (SomethingHappens.event== EventType.HIT ){
-              System.out.println("Message Processed in Game.java");
+    
+        Event SomethingHappens = new Event();
+    if (msg.contains("HIT")){
+              System.out.println("Message Processed as Hit in Game.java");
+               
               Update(SomethingHappens.event);
     }
+    if(msg.contains("STAND")){
+      System.out.println("Message processed as Stand in Game.java");
+      SomethingHappens.event = EventType.STAND;
+      Update(SomethingHappens.event);
+    }
+    if(msg.contains("FOLD")){
+      SomethingHappens.event = EventType.FOLD;
+       Update(SomethingHappens.event);
+
+    }if(msg.contains("HINT")){
+     hints(players.get(currentTurn).pHand);
+    }
+     if(msg.contains("DOUBLE")){
+      SomethingHappens.event = EventType.DOUBLE;
+      Update(SomethingHappens.event);
+     }
+     if(msg.contains("SPLIT")){
+      SomethingHappens.event = EventType.SPLIT;
+      Update(SomethingHappens.event);
+     }
+    
 }
   public static String hints(Vector<Card> Hand){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
       //will be fi
@@ -91,6 +114,7 @@ return index;
       if(total >=17){
           indexReturn = 1;
       }
+      System.out.println(hintMessages[indexReturn]);
       return  hintMessages[indexReturn]; 
   }
 
@@ -116,9 +140,7 @@ switch(E){
       currentTurn = currentTurn++;
     break;
 
-    case NAME:
-    /*will have input bar as shown on front end*/
-    break;
+    
 
 
     case SPLIT:

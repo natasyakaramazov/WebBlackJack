@@ -15,7 +15,7 @@
 <h3><p style="text-align: right;">Dealer:</p></h3>
 <body>
 
-  
+  <p id="hintDemonstration" src="hintShowcase">What To Do Will Be Here </p>
 
   <img id="card1" src="AD.svg" width= "150px" class="fix">
   <img id="card2" src="AD.svg" width="150px" class="fix2">
@@ -83,7 +83,7 @@ console.log("open");
 }
 
 var cardIdx = 0;
-var playerID = 0;
+var playerID = 2;
 var amount =0;
 var currentTurn = 0;
 connection.onmessage = function (evt){//not quite sure what evt is and thus I'm not really sure what evt.data is and what that makes msg
@@ -97,7 +97,7 @@ console.log("Message received: ");
   const obj = JSON.parse(msg); //This makes an obj out of what Json parses from msg
     if (!obj.players) {
 
-      p
+      
       console.log("player ID = " + playerID);
      //now this message acts as a debug, it's showing on our website right now so it must mean the obj is not a game with players?
       
@@ -129,6 +129,7 @@ console.log("Message received: ");
       value_to_char.set("King", "K");
    // playerID++;
  console.log("dumping game state")
+ console.log(obj);
       for (const player of obj.players) {
         console.log("id =" + player.playerID);
 
@@ -148,7 +149,11 @@ console.log("Message received: ");
           }  // each card
         } // player id matches
       } // each player
-    } // this is game state
+    }
+     // this is game state
+     if(obj.hints){
+        console.log(hints);
+     }
   }
 
 
@@ -204,9 +209,15 @@ but I'm not sure if I'm doing it right because "E" isn't being recognized as a n
             E.userEvent('FOLD');
 
           }
+          if(s==="Hint"){
+            E.userEvent('HINT');
+           
+            
+            }
+          
           connection.send(JSON.stringify(E));
           console.log(JSON.stringify(E));
-      }   
+      }  
 
 
 

@@ -25,6 +25,7 @@ public class Player{
     public Player()
     {
         pHand = new Vector<Card>();
+        playerID = 2;
     }
 
     //logic check of the player

@@ -3,7 +3,7 @@ import java.util.Vector;
  public class Event{
 
   public enum EventType{
-  NAME, STAND, SPLIT, HIT, FOLD, BET;
+  NAME, STAND, SPLIT, HIT, FOLD, BET,HINT,DOUBLE;
   }
  EventType event;
   int playerID;
@@ -11,6 +11,10 @@ import java.util.Vector;
 
 public Event(){
      event = EventType.HIT; 
+}
+
+public Event(EventType s){
+    event= s;
 }
 
   
