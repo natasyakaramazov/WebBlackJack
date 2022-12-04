@@ -74,10 +74,10 @@ return index;
     // take the string we just received, and turn it into a user event
     Event SomethingHappens = gson.fromJson(msg, Event.class);
 
-    if (SomethingHappens.event == EventType.NAME) {
-        players.get(SomethingHappens.playerID).SetName(SomethingHappens.playerName);
+    if (SomethingHappens.event== EventType.HIT ){
+              System.out.println("Message Processed in Game.java");
+              Update(SomethingHappens.event);
     }
-
 }
   public static String hints(Vector<Card> Hand){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
       //will be fi

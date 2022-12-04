@@ -10,7 +10,7 @@ import java.util.Vector;
   String playerName;
 
 public Event(){
-
+     event = EventType.HIT; 
 }
 
   
