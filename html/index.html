@@ -28,19 +28,19 @@
   </div>
 
   <div id = "standInput">
-   <button onclick="functionToExecute(this)">Stand</button>
+   <button onclick="functionToExecute('Stand')">Stand</button>
   </div>
 
   <div id = "splitInput">
-   <button onclick="functionToExecute(this)">Split</button>
+   <button onclick="functionToExecute('Split')">Split</button>
   </div>
 
   <div id = "foldInput">
-    <button onclick="functionToExecute(this)">Fold</button>
+    <button onclick="functionToExecute('Fold')">Fold</button>
    </div>
 
    <div id = "hintInput">
-    <button onclick="functionToExecute(this)">Hint</button>
+    <button onclick="functionToExecute('Hint')">Hint</button>
   </div>
 
    <div id="betInput">
@@ -60,7 +60,14 @@
 <script type="text/javascript">
 
 class UserEvent {
-     EventType = 'HIT';
+     constructor(){
+           this.eventType = 'HIT';
+
+     }
+
+      userEvent(eventName){
+        this.eventType = eventName;
+     }
 }
 var connection = null;
 var serverURL;
@@ -124,7 +131,6 @@ console.log("Message received: ");
  console.log("dumping game state")
       for (const player of obj.players) {
         console.log("id =" + player.playerID);
-        console.log("name =" + player.name);
 
         // only show the cards for this player
         if (playerID == player.playerID) {
@@ -181,9 +187,22 @@ but I'm not sure if I'm doing it right because "E" isn't being recognized as a n
 
 
      function functionToExecute(s) {
-          E = new UserEvent();
-          if (s=="Hit") {
-             E.EventType = "HIT";
+        const  E = new UserEvent();
+          if (s==="Hit") {
+            E.userEvent('HIT');
+
+          }
+          if(s ==="Stand"){
+            E.userEvent('STAND');
+
+          }
+          if(s==="Split"){
+            E.userEvent('SPLIT');
+
+          }
+          if(s==="Fold"){
+            E.userEvent('FOLD');
+
           }
           connection.send(JSON.stringify(E));
           console.log(JSON.stringify(E));
