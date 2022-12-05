@@ -15,7 +15,7 @@
 <h3><p style="text-align: right;">Dealer:</p></h3>
 <body>
 
-  <p id="hintDemonstration" src="hintShowcase">What To Do Will Be Here </p>
+  <p>What To Do Will Be Here</p>
 
   <img id="card1" src="AD.svg" width= "150px" class="fix">
   <img id="card2" src="AD.svg" width="150px" class="fix2">
@@ -95,6 +95,8 @@ console.log("Message received: ");
 
 
   const obj = JSON.parse(msg); //This makes an obj out of what Json parses from msg
+ currentTurn = obj.currentTurn;
+ console.log("current turn is " +currentTurn);
     if (!obj.players) {
 
       
@@ -147,6 +149,9 @@ console.log("Message received: ");
             document.getElementById(element).src = filename;
             i++;
           }  // each card
+        }else{
+               playerID++;
+
         } // player id matches
       } // each player
     }
@@ -199,15 +204,15 @@ but I'm not sure if I'm doing it right because "E" isn't being recognized as a n
           }
           if(s ==="Stand"){
             E.userEvent('STAND');
-
+             currentTurn++;
           }
           if(s==="Split"){
             E.userEvent('SPLIT');
-
+          
           }
           if(s==="Fold"){
             E.userEvent('FOLD');
-
+            currentTurn++;
           }
           if(s==="Hint"){
             E.userEvent('HINT');

@@ -36,7 +36,7 @@ public class Game {
 
   public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
        
-        
+       P.playerID = P.playerID++; 
        P.pHand.add(0,D.getCard());
        P.pHand.add(1,D.getCard());
        players.add(P);
