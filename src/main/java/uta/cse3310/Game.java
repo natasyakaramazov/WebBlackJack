@@ -7,6 +7,8 @@ import uta.cse3310.Player;
 import uta.cse3310.Dealer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import uta.cse3310.Bot;
+
 public class Game {
      Deck D;
      Vector<Card> removedCards; //LT
@@ -14,13 +16,19 @@ public class Game {
     Vector<Player> players; //KA
     int currentTurn; //KA
     Dealer dealer; //= new Dealer();
-  
+    Bot bot;
     public Game()
     { 
        D = new Deck();
        dealer = new Dealer();
+       bot = new Bot();
+     //  bot.newStatus = CheckStatus.NORMAL;
        removedCards = new Vector<Card>();
        players =  new Vector<Player>();
+       currentTurn = 2;
+         /*Add a bot and a dealer to the players class
+          players.add(dealer);  //index 0, playerID 0;
+          players.add(bot);   index 1, playerID 1;*/
        System.out.println("hey! i am in the Game constructor");
     } 
   /*public static void main(String[] args) {
@@ -36,7 +44,7 @@ public class Game {
 
   public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
        
-       P.playerID = P.playerID++; 
+       P.playerID = currentTurn +1;
        P.pHand.add(0,D.getCard());
        P.pHand.add(1,D.getCard());
        players.add(P);
@@ -45,12 +53,12 @@ public class Game {
 
   public void removePlayer(int indexOfPlayer){
     //Added by Logan Thresher
-    for (int i = 0; i < players.elementAt((indexOfPlayer - 1)).pHand.size(); ++i) //Adds every card from the player to the removedCards vector
+    for (int i = 0; i < players.elementAt((indexOfPlayer)).pHand.size(); ++i) //Adds every card from the player to the removedCards vector
     {
-      removedCards.add(players.elementAt((indexOfPlayer - 1)).pHand.elementAt(i));
+      removedCards.add(players.elementAt((indexOfPlayer)).pHand.elementAt(i));
     }
     
-    players.remove(indexOfPlayer - 1);
+    players.remove(indexOfPlayer);
   }
   
 
@@ -100,6 +108,10 @@ return index;
       SomethingHappens.event = EventType.SPLIT;
       Update(SomethingHappens.event);
      }
+     if(msg.contains("BET")){
+         int betAmount = Integer.parseInt(msg);
+         players.get(currentTurn).amount = betAmount;
+           }
     
 }
   public static String hints(Vector<Card> Hand){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
@@ -119,8 +131,11 @@ return index;
   }
 
   //clear the game/reset
-  public static void clear(){
-    
+  public static void switchHand(Vector<Card> Hand){
+    /*    Card card1 = Hand.get(0);
+          Card card2 = Hand.get(1);
+       Hand.get(0)=  Hand.lastElement()
+           */
   }
 public  boolean Update(EventType E){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
 switch(E){
@@ -129,10 +144,11 @@ switch(E){
                   Then Accesses the Player's Hand
                    Adds a Card to the Hand 
                         Kierra Ashford                    */
-                        if(players.get(currentTurn).playerID == 0){
+                        /*if(players.get(currentTurn).playerID == 0){
                           
-                        }
-      players.get(currentTurn).pHand.add(D.getCard());
+                        }*/
+      players.get(currentTurn-2).pHand.add(D.getCard());
+      /*Implement Switch Cards method or get javascript to showcase last two cards in a hand*/
         
     break;
 

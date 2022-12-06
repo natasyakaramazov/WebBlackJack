@@ -137,7 +137,10 @@ console.log("Message received: ");
 
         // only show the cards for this player
         if (playerID == player.playerID) {
-
+/*   if(player.playerID == 0){
+        
+}
+  */
           var i = 0;
           for (const card of player.pHand) {
             console.log("Card =" + card.cardsuit + "  " + card.cardvalue);
@@ -145,7 +148,15 @@ console.log("Message received: ");
             var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
             console.log(filename);
             var element = "card" + (i + 1);
+/* Need to change this to showcase last two cards 
+  for(int i = 0; i <2;i++){
+      const  card =  player.pHand[i];
+  var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
+ console.log(filename);
+  var element = "card" + (i +1);
+  document.getElementById(element).src = filename;
 
+ */
             document.getElementById(element).src = filename;
             i++;
           }  // each card

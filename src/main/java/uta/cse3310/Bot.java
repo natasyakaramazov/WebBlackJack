@@ -3,7 +3,21 @@ package uta.cse3310;
 
 import java.util.Vector;
 
-public class Bot extends Player{
+	
+public class Bot extends Player{	 
+     
+
+  public enum  CheckStatus{ //Created by Greg Jolly; Last Edited by Greg Jolly
+			
+      NORMAL, HIGHRISK, MINIMALRISK
+		
+    }
+    
+CheckStatus newStatus;
+public Bot(){
+   newStatus = CheckStatus.NORMAL;
+}
+
 
     //int amountwon = 5000; //intial amount that bot has
    
@@ -17,9 +31,4 @@ public class Bot extends Player{
 
     //status of that dictates whether the bot should bet or not 
 
-		public enum status{ //Created by Greg Jolly; Last Edited by Greg Jolly
-			
-      NORMAL, HIGHRISK, MINIMALRISK
-		
-    }
 }
