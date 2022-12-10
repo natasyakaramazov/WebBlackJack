@@ -15,13 +15,14 @@
 <h3><p style="text-align: right;">Dealer:</p></h3>
 <body>
 
-  <p>What To Do Will Be Here</p>
+  <p id= "ValueOfCards" style="text-align: left; color: white;position:absolute;left:40px;bottom:50px;">Value of Cards:</p>
+  <p id="LiteralValue" style = "text-align: left; color:white; position:absolute; left:50px; bottom:50px;">0</p>
 
   <img id="card1" src="AD.svg" width= "150px" class="fix">
   <img id="card2" src="AD.svg" width="150px" class="fix2">
 
-  <img id="card3" src="9C.svg" width= "150px" class="fix3">
-  <img id="card4" src="AH.svg" width="150px" class="fix4">
+  <img id="dealer1" src="9C.svg" width= "150px" class="fix3">
+  <img id="dealer2" src="AH.svg" width="150px" class="fix4">
 
   <div id = "hitInput">
    <button id="hitbutton" onclick="functionToExecute('Hit')">Hit</button>
@@ -44,7 +45,7 @@
   </div>
 
    <div id="betInput">
-    <p>name: <input id="sendBet" type="text">
+    <p>Bet: <input id="sendBet" type="text">
       <input type="button" name="sendBet" value="Bet" onclick="sendBet()">
     </p>
   </div>
@@ -106,8 +107,7 @@ console.log("Message received: ");
     }
     else { 
       
-      let header = document.querySelector("h2");
-      header.innerText = "You are Player " + playerID; 
+      
       const suite_to_char = new Map();
 
       suite_to_char.set("SPADES", "S");
@@ -132,15 +132,19 @@ console.log("Message received: ");
    // playerID++;
  console.log("dumping game state")
  console.log(obj);
-      for (const player of obj.players) {
-        console.log("id =" + player.playerID);
+ 
 
+ currentTurn = obj.currentTurn;
+      for (const player of obj.players) {
+       let header = document.querySelector("h2");
+      header.innerText = "It is Player " + currentTurn + "'s Turn. Player "+ player.playerID; 
         // only show the cards for this player
         if (playerID == player.playerID) {
 /*   if(player.playerID == 0){
-        
-}
-  */
+          
+     
+  */ 
+
           var i = 0;
           for (const card of player.pHand) {
             console.log("Card =" + card.cardsuit + "  " + card.cardvalue);
@@ -160,10 +164,7 @@ console.log("Message received: ");
             document.getElementById(element).src = filename;
             i++;
           }  // each card
-        }else{
-               playerID++;
-
-        } // player id matches
+        }// player id matches
       } // each player
     }
      // this is game state
@@ -236,14 +237,13 @@ but I'm not sure if I'm doing it right because "E" isn't being recognized as a n
       }  
 
 
-
 //document.body.appendChild(btn);
-//    var x = document.getElementById("nameInput");
-//    if (x.style.display === "none") {
-//      x.style.display = "block";
-//    } else {
-//      x.style.display = "inline";
-//    }
+  var x = document.getElementById("betInput");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "inline";
+    }
 
   
 

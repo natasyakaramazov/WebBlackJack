@@ -100,7 +100,7 @@ public class App extends WebSocketServer {
     playerCount = playerCount +1;
     System.out.println("before making the new player " + playerCount);
     Player player = new Player();
-   player.playerID = playerCount+;
+   player.playerID = playerCount + 1;
    /*Every time there's a new connection, player count increases, that
     s their id number - Kierra Ashford */
 

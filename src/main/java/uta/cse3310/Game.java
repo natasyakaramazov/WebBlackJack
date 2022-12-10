@@ -44,7 +44,7 @@ public class Game {
 
   public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
        
-       P.playerID = currentTurn +1;
+     System.out.println("Player "+ P.playerID+ " Curren Turn is" + currentTurn);
        P.pHand.add(0,D.getCard());
        P.pHand.add(1,D.getCard());
        players.add(P);
