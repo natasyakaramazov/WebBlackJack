@@ -148,12 +148,18 @@ switch(E){
                           
                         }*/
       players.get(currentTurn-2).pHand.add(D.getCard());
+       
       /*Implement Switch Cards method or get javascript to showcase last two cards in a hand*/
         
     break;
 
     case STAND:
-      currentTurn = currentTurn++;
+
+      if(currentTurn  + 1 == players.size()){
+        currentTurn = 0;
+      }else{
+      currentTurn = currentTurn+ 1;
+      }
     break;
 
     
@@ -169,8 +175,13 @@ switch(E){
     break;
 
     case FOLD:
-           removePlayer(currentTurn);     
+           removePlayer(currentTurn);  
+           
+      if(currentTurn  + 1 == players.size()){
+        currentTurn = 0;
+      }else{   
                  currentTurn = currentTurn++;
+      }
 
     break;
 }

@@ -149,22 +149,27 @@ console.log("Message received: ");
    
           console.log("debug message, carry on");
     }     
-  } else{     
-  player = playersArray[playerID];   
+  }   
   
-  if(playersArray[playerID] == 0) //AJ
-  {
+  if(playersArray[currentTurn].playerID== 0) //AJ, edited by KA
+  { 
+    
+   const player = playersArray[currentTurn];   
+      
+   let header = document.querySelector("h2");
+  header.innerText = "It is Player " + currentTurn + "'s Turn. Player "+ player.playerID; 
     for(var i = 0; i <2;i++){
       const  card =  player.pHand[i];
       var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
       console.log(filename);
-      var element = "card" + (i +1);
+      var element = "dealer" + (i +1);
       document.getElementById(element).src = filename;
    
       console.log("Dealer if statement debug message, carry on");
     }   
-  }                               //AJ
+  }  else{                             //AJ
 
+   const player = playersArray[currentTurn];   
 
                 // playerArray.push(player);
            
@@ -194,8 +199,9 @@ console.log("Message received: ");
   }
      playerID++;
 
-}
+
     }
+  }
 
   function send() {
 
