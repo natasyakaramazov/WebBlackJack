@@ -26,9 +26,9 @@ public class Game {
        removedCards = new Vector<Card>();
        players =  new Vector<Player>();
        currentTurn = 2;
-         /*Add a bot and a dealer to the players class
+         //Add a bot and a dealer to the players class
           players.add(dealer);  //index 0, playerID 0;
-          players.add(bot);   index 1, playerID 1;*/
+          players.add(bot); 
        System.out.println("hey! i am in the Game constructor");
     } 
   /*public static void main(String[] args) {
