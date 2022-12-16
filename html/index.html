@@ -136,45 +136,59 @@ console.log("Message received: ");
  let playersArray = obj.players;
 
  currentTurn = obj.currentTurn;      
-            if(playersArray[currentTurn].playerID ==currentTurn){        
-              const player = playersArray[currentTurn]; 
-                let header = document.querySelector("h2");
+  if(playersArray[currentTurn].playerID ==currentTurn){        
+      const player = playersArray[currentTurn]; 
+      let header = document.querySelector("h2");
       header.innerText = "It is Your Turn, Player " + player.playerID; 
-              for(var i = 0; i <2;i++){
+        for(var i = 0; i <2;i++){
+          const  card =  player.pHand[i];
+          var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
+          console.log(filename);
+          var element = "card" + (i +1);
+          document.getElementById(element).src = filename;
+   
+          console.log("debug message, carry on");
+    }     
+  } else{     
+  player = playersArray[playerID];   
+  
+  if(playersArray[playerID] == 0) //AJ
+  {
+    for(var i = 0; i <2;i++){
       const  card =  player.pHand[i];
       var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
       console.log(filename);
       var element = "card" + (i +1);
       document.getElementById(element).src = filename;
    
-              console.log("debug message, carry on");
-    }     
-  } else{     
-           player = playersArray[playerID];   
-          
+      console.log("Dealer if statement debug message, carry on");
+    }   
+  }                               //AJ
+
+
                 // playerArray.push(player);
            
         
-       let header = document.querySelector("h2");
-      header.innerText = "It is Player " + currentTurn + "'s Turn. Player "+ player.playerID; 
+  let header = document.querySelector("h2");
+  header.innerText = "It is Player " + currentTurn + "'s Turn. Player "+ player.playerID; 
       
         
-//Need to change this to showcase last two cards 
+  //Need to change this to showcase last two cards 
   for(var i = 0; i <2;i++){
-      const  card =  player.pHand[i];
-  var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
- console.log(filename);
-  var element = "card" + (i +1);
-  document.getElementById(element).src = filename;
+    const  card =  player.pHand[i];
+    var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
+    console.log(filename);
+    var element = "card" + (i +1);
+    document.getElementById(element).src = filename;
 
  
-            //document.getElementById(element).src = filename;
-            //i++;
-          }  // each card
-        // player id matches
-       // each player
+    //document.getElementById(element).src = filename;
+    //i++;
+    }// each card
+    // player id matches
+    // each player
     
-     // this is game state
+    // this is game state
      
 
   }
