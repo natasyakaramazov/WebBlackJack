@@ -22,6 +22,7 @@ public class Dealer extends Player
         Card tempCard = new Card();
         dealerhand = new Vector<Card>(); //       What will hold the dealers cards
         dealerhand.add(tempCard);
+        playerID = 0;
         
           //choice.HIT;
 

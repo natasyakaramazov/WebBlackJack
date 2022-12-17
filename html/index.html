@@ -135,13 +135,46 @@ console.log("Message received: ");
  console.log(obj);
  let playersArray = obj.players;
 
- currentTurn = obj.currentTurn;      
-  if(playersArray[currentTurn].playerID ==currentTurn){        
+ currentTurn = obj.currentTurn;  /* currentTurn = 2*/
+ console.log(playersArray[currentTurn].playerID);  /* 2 */  
+  
+  
+   if(playersArray[currentTurn].playerID== 0) //AJ, edited by KA
+  { 
+    
+   const player = playersArray[currentTurn];   
+      
+   let header = document.querySelector("h2");
+  header.innerText = "It is the Dealer's Turn"; 
+    for(var i = 0; i <2;i++){
+      const card =  player.pHand[i];
+      var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
+      console.log(filename);
+      var element = "dealer" + (i +1);
+      document.getElementById(element).src = filename;
+   
+      console.log("Dealer if statement debug message, carry on");
+    }  
+  }else if(playersArray[currentTurn].playerID == 1){
+    const player = playersArray[currentTurn];   
+      
+      let header = document.querySelector("h2");
+     header.innerText = "It is the Bot's Turn"; 
+       for(var i = 0; i <2;i++){
+         const card =  player.pHand[i];
+         var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
+         console.log(filename);
+       //  var element = "dealer" + (i +1);
+         //document.getElementById(element).src = filename;
+      
+         console.log("Bot if statement debug message, carry on");
+       }
+  }else if(playersArray[currentTurn].playerID ==currentTurn){        /* 2 == 2*/
       const player = playersArray[currentTurn]; 
       let header = document.querySelector("h2");
       header.innerText = "It is Your Turn, Player " + player.playerID; 
         for(var i = 0; i <2;i++){
-          const  card =  player.pHand[i];
+          const card =  player.pHand[i];
           var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
           console.log(filename);
           var element = "card" + (i +1);
@@ -149,27 +182,12 @@ console.log("Message received: ");
    
           console.log("debug message, carry on");
     }     
-  }   
-  
-  if(playersArray[currentTurn].playerID== 0) //AJ, edited by KA
-  { 
-    
-   const player = playersArray[currentTurn];   
-      
-   let header = document.querySelector("h2");
-  header.innerText = "It is Player " + currentTurn + "'s Turn. Player "+ player.playerID; 
-    for(var i = 0; i <2;i++){
-      const  card =  player.pHand[i];
-      var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
-      console.log(filename);
-      var element = "dealer" + (i +1);
-      document.getElementById(element).src = filename;
-   
-      console.log("Dealer if statement debug message, carry on");
-    }   
-  }  else{                             //AJ
+  }    else{                             //AJ
+  for(const player of obj.players){
+           
 
-   const player = playersArray[currentTurn];   
+  
+     
 
                 // playerArray.push(player);
            
@@ -195,7 +213,7 @@ console.log("Message received: ");
     
     // this is game state
      
-
+  }
   }
      playerID++;
 

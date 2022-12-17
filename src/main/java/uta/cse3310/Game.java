@@ -27,8 +27,13 @@ public class Game {
        players =  new Vector<Player>();
        currentTurn = 2;
          //Add a bot and a dealer to the players class
-          players.add(dealer);  //index 0, playerID 0;
-          players.add(bot); 
+           dealer.pHand.add(0,D.getCard());
+           dealer.pHand.add(1,D.getCard());//index 0, playerID 0;    
+           players.add(dealer); 
+
+           bot.pHand.add(0,D.getCard());
+           bot.pHand.add(1,D.getCard());
+           players.add(bot); 
        System.out.println("hey! i am in the Game constructor");
     } 
   /*public static void main(String[] args) {
@@ -119,23 +124,43 @@ return index;
       int total = 0;
       int indexReturn =0;
       String hintMessages [] = {"Hit", "Stand", "Double", "Split"};
-      for(int i = 0; i < Hand.size();i++){
-         total+= Card.getCardLiteralValue(Hand.get(i).getCardValue());
-      }
+      total = getHandValue(Hand);
+      if(total == 20){
+       indexReturn = 3;
 
-      if(total >=17){
+     } else if(total >=17){
           indexReturn = 1;
       }
+
+       else if(total <17){
+        indexReturn = 0;
+      }
+
       System.out.println(hintMessages[indexReturn]);
       return  hintMessages[indexReturn]; 
   }
-
+public static int getHandValue(Vector<Card> Hand){
+  int total = 0;
+for(int i = 0; i < Hand.size();i++){
+         total+= Card.getCardLiteralValue(Hand.get(i).getCardValue());
+      }
+      return total;
+} 
   //clear the game/reset
-  public static void switchHand(Vector<Card> Hand){
-    /*    Card card1 = Hand.get(0);
+  public static Vector<Card> switchHand(Vector<Card> Hand){
+          Card card1 = Hand.get(0);
           Card card2 = Hand.get(1);
-       Hand.get(0)=  Hand.lastElement()
-           */
+          int lastElement = Hand.size() - 1;
+          int secondToLast = Hand.size()-2;
+       Hand.set(0, Hand.get(lastElement));
+       Hand.set(1, Hand.get(secondToLast));
+       Hand.set(lastElement, card1);
+       Hand.set(secondToLast,card2);
+
+
+           
+
+           return Hand;
   }
 public  boolean Update(EventType E){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
 switch(E){
@@ -144,11 +169,9 @@ switch(E){
                   Then Accesses the Player's Hand
                    Adds a Card to the Hand 
                         Kierra Ashford                    */
-                        /*if(players.get(currentTurn).playerID == 0){
-                          
-                        }*/
-      players.get(currentTurn-2).pHand.add(D.getCard());
-       
+                        
+      players.get(currentTurn).pHand.add(D.getCard());
+                   players.get(currentTurn).pHand =  switchHand(players.get(currentTurn).pHand);   
       /*Implement Switch Cards method or get javascript to showcase last two cards in a hand*/
         
     break;
@@ -157,6 +180,9 @@ switch(E){
 
       if(currentTurn  + 1 == players.size()){
         currentTurn = 0;
+        EventType dealerChoice;
+        dealerChoice = EventType.HIT;
+        Update(dealerChoice);
       }else{
       currentTurn = currentTurn+ 1;
       }
