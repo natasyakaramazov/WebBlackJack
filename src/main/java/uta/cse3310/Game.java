@@ -17,6 +17,7 @@ public class Game {
     int currentTurn; //KA
     Dealer dealer; //= new Dealer();
     Bot bot;
+    int winLoss;
     public Game()
     { 
        D = new Deck();
@@ -35,6 +36,7 @@ public class Game {
            bot.pHand.add(1,D.getCard());
            players.add(bot); 
        System.out.println("hey! i am in the Game constructor");
+        winLoss = 0;
     } 
   /*public static void main(String[] args) {
 
@@ -147,7 +149,7 @@ for(int i = 0; i < Hand.size();i++){
       return total;
 } 
   //clear the game/reset
-  public static Vector<Card> switchHand(Vector<Card> Hand){
+  public static Vector<Card> switchHand(Vector<Card> Hand){   /*Created by Kierra Ashford, last Edited by Kierra Ashford*/
           Card card1 = Hand.get(0);
           Card card2 = Hand.get(1);
           int lastElement = Hand.size() - 1;
@@ -183,7 +185,16 @@ switch(E){
         EventType dealerChoice;
         dealerChoice = EventType.HIT;
         Update(dealerChoice);
-      }else{
+        dealerChoice = EventType.STAND;
+        Update(dealerChoice);
+      }else if(currentTurn +1 == 1){
+        currentTurn = 1;
+        EventType botChoice;
+        botChoice = EventType.HIT;
+        Update(botChoice);
+        botChoice = EventType.STAND;
+        Update(botChoice);
+       } else{
       currentTurn = currentTurn+ 1;
       }
     break;
@@ -203,21 +214,26 @@ switch(E){
     case FOLD:
            removePlayer(currentTurn);  
            
-      if(currentTurn  + 1 == players.size()){
+      if(currentTurn  == players.size()){
         currentTurn = 0;
+         declareWin(players.get(currentTurn));
       }else{   
                  currentTurn = currentTurn++;
       }
-
+        
     break;
 }
 return false;
 
 }
   //returns an array of numbers dependent on the wins and losses
-  public static int[] declareWin(){
-     int winsLoss [] = {1,0,1};
-    return winsLoss;
+  public  int declareWin(Player P){
+      if(P.playerID == 0){
+          winLoss = 1234;
+      }else{
+         winLoss = P.playerID;
+      }
+    return winLoss;
   }
   public static int sendDealeraAmount(){
     return 5000;

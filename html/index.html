@@ -88,6 +88,7 @@ var cardIdx = 0;
 
 var amount =0;
 var currentTurn = 0;
+var winLoss = 0;
 connection.onmessage = function (evt){//not quite sure what evt is and thus I'm not really sure what evt.data is and what that makes msg
 
 var msg;
@@ -97,6 +98,20 @@ console.log("Message received: ");
 
 
   const obj = JSON.parse(msg); //This makes an obj out of what Json parses from msg
+  if(obj.winLoss !=0){
+   console.log(obj.winLoss);
+  if(obj.winLoss === 1234){
+   let header = document.querySelector("h2");
+   header.innerText = "Dealer Wins!"; 
+   exit(1);
+
+  } else {
+    let header = document.querySelector("h2");
+
+    header.innerText = "Player  "+ obj.winLoss + "Wins!"; 
+
+  }
+  }
     if (!obj.players) {
  currentTurn = obj.currentTurn;
 
