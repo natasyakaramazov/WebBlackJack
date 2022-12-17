@@ -18,6 +18,7 @@ public class Game {
     Dealer dealer; //= new Dealer();
     Bot bot;
     int winLoss;
+    
     public Game()
     { 
        D = new Deck();
@@ -39,6 +40,7 @@ public class Game {
            players.add(bot); 
        System.out.println("hey! i am in the Game constructor");
         winLoss = 0;
+        
     } 
   /*public static void main(String[] args) {
 
@@ -63,7 +65,11 @@ for(int i = 0; i < Hand.size();i++){
        P.pHand.add(0,D.getCard());
        P.pHand.add(1,D.getCard());
        P.handValue = getHandValue(P.pHand);
+       
        players.add(P);
+       if(P.handValue == 21){
+        declareWin(P);
+       }
        
   }
 
@@ -89,7 +95,11 @@ for(int i = 0; i < Hand.size();i++){
 return index;
     //splits the card, starts a new bet
   }
-  
+  static String extractInt(String str){
+  /*Had to grab this bad boy from Geeks for Geeks to get the number for the bet since ParseInt doesn't work, not claiming this function as my own KA*/
+
+return str; 
+}
 
     public void processMessage(String msg) { /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
     System.out.println(msg);
@@ -125,13 +135,14 @@ return index;
       Update(SomethingHappens.event);
      }
      if(msg.contains("BET")){
-         int betAmount = Integer.parseInt(msg);
-         players.get(currentTurn).amount = betAmount;
+         String betAmount = extractInt(msg);
+       //  int betAmountInt = Integer.ParseInt(betAmount);
+        // players.get(currentTurn).amount = betAmountInt;
          System.out.println(betAmount);
            }
     
 }
-  public static String hints(Vector<Card> Hand){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
+  public  void hints(Vector<Card> Hand){ /*Created by Kierra Ashford, Last Edited by Kierra Ashford */
       //will be fi
       int total = 0;
       int indexReturn =0;
@@ -149,7 +160,7 @@ return index;
       }
 
       System.out.println(hintMessages[indexReturn]);
-      return  hintMessages[indexReturn]; 
+      players.get(currentTurn).hintGame =  hintMessages[indexReturn]; 
   }
 
   //clear the game/reset
@@ -178,6 +189,13 @@ switch(E){
                         
       players.get(currentTurn).pHand.add(D.getCard());
                    players.get(currentTurn).pHand =  switchHand(players.get(currentTurn).pHand);   
+                   players.get(currentTurn).handValue = getHandValue(players.get(currentTurn).pHand);
+                   if(players.get(currentTurn).handValue == 21){
+                    declareWin(players.get(currentTurn));
+                   }
+                   if(players.get(currentTurn).handValue >21){
+                    declareWin(players.get(0));
+                   }
       /*Implement Switch Cards method or get javascript to showcase last two cards in a hand*/
         
     break;

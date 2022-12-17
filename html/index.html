@@ -17,6 +17,10 @@
 
   <p id= "ValueOfCards" style="text-align: left; color: white;position:absolute;left:40px;bottom:50px;">Value of Cards:</p>
   <p id="LiteralValue" style = "text-align: left; color:white; position:absolute; right:90px; bottom:50px;">0</p>
+  <p id="hintMessage" style = "text-align: left; color:white; position:absolute; right:90px; top:20px;">Hint:</p>
+
+  <p id="hintValue" style = "text-align: left; color:white; position:absolute; right:90px; top:50px;">Nothing</p>
+
 
   <img id="card1" src="AD.svg" width= "150px" class="fix">
   <img id="card2" src="AD.svg" width="150px" class="fix2">
@@ -89,6 +93,7 @@ var cardIdx = 0;
 var amount =0;
 var currentTurn = 0;
 var winLoss = 0;
+var compareStrings = "No";
 connection.onmessage = function (evt){//not quite sure what evt is and thus I'm not really sure what evt.data is and what that makes msg
 
 var msg;
@@ -103,12 +108,19 @@ console.log("Message received: ");
   if(obj.winLoss === 1234){
    let header = document.querySelector("h2");
    header.innerText = "Dealer Wins!"; 
-   exit(1);
+
+
+   //setTimeout( connection.close(),10000);
+   exiyt();
+   connection.close();
 
   } else {
     let header = document.querySelector("h2");
 
     header.innerText = "Player  "+ obj.winLoss + "Wins!"; 
+
+    exit();
+        setTimeout( connection.close(),100000000000);
 
   }
   }
@@ -192,6 +204,7 @@ console.log("Message received: ");
       header.innerText = "It is Your Turn, Player " + player.playerID;  
       let handValue = document.getElementById("LiteralValue");
      handValue.innerText = player.handValue;
+     
         for(var i = 0; i <2;i++){
           const card =  player.pHand[i];
           var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
@@ -201,15 +214,14 @@ console.log("Message received: ");
    
           console.log("debug message, carry on");
     }     
+     if(player.hintGame.localeCompare.compareStrings!=0){
+      let hintShow = document.getElementById("hintValue");
+      hintShow.innerText = player.hintGame;
+     }
   }    else{                             //AJ
   for(const player of obj.players){
            
 
-  
-     
-
-                // playerArray.push(player);
-           
         
   let header = document.querySelector("h2");
   header.innerText = "It is Player " + currentTurn + "'s Turn. Player "+ player.playerID; 
@@ -217,6 +229,11 @@ console.log("Message received: ");
   let handValue = document.getElementById("LiteralValue");
      handValue.innerText = player.handValue;
   //Need to change this to showcase last two cards 
+  if(player.hintGame.localeCompare.compareStrings!=0){
+      let hintShow = document.getElementById("hintValue");
+      hintShow.innerText = player.hintGame;
+     }
+
   for(var i = 0; i <2;i++){
     const  card =  player.pHand[i];
     var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
@@ -263,7 +280,7 @@ function sendBet(){
          bet: document.getElementById("sendBet").value,
           
        };
-    
+    console.log("SendBet has been pressed");
     connection.send(JSON.stringify(msg));
     console.log(JSON.stringify(msg));
 
@@ -271,30 +288,32 @@ function sendBet(){
 
     
 /*This is me trying to add functionality to our Hit button
-but I'm not sure if I'm doing it right because "E" isn't being recognized as a new variable*/
+but I'm not sure if I'm doing it right because "E" isn't being recognized as a new variable - Kierra created the function*/
 
-
+/*Alex made the  console.log debugs for this function*/
      function functionToExecute(s) {
         const  E = new UserEvent();
           if (s==="Hit") {
             E.userEvent('HIT');
-
+console.log("HIT has been pressed");
           }
           if(s ==="Stand"){
             E.userEvent('STAND');
              currentTurn++;
+             console.log("STAND has been pressed");
           }
           if(s==="Split"){
             E.userEvent('SPLIT');
-          
+          console.log("Split has been Pressed");
           }
           if(s==="Fold"){
             E.userEvent('FOLD');
             currentTurn++;
+            console.log("FOLD has been pressed");
           }
           if(s==="Hint"){
             E.userEvent('HINT');
-           
+           console.log("HINT has been pressed");
             
             }
             

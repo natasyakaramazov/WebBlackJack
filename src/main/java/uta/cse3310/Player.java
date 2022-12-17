@@ -12,6 +12,7 @@ public class Player{
     int handValue;
     int amount;
     int amountWon;
+    String hintGame;
     String name;  
     String LastMessageToPlayer;
     int playerID;
@@ -30,6 +31,7 @@ public class Player{
     {
         pHand = new Vector<Card>();
          handValue = 0;
+         hintGame = "No";
     }
 
     //logic check of the player
