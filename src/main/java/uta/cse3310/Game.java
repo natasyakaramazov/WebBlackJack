@@ -34,6 +34,8 @@ public class Game {
 
            bot.pHand.add(0,D.getCard());
            bot.pHand.add(1,D.getCard());
+           //bot.handValue = getHandValue(P.pHand);
+
            players.add(bot); 
        System.out.println("hey! i am in the Game constructor");
         winLoss = 0;
@@ -48,12 +50,19 @@ public class Game {
     Gson gson = new Gson();
     return gson.toJson(this);
 }
-
+public static int getHandValue(Vector<Card> Hand){
+  int total = 0;
+for(int i = 0; i < Hand.size();i++){
+         total+= Card.getCardLiteralValue(Hand.get(i).getCardValue());
+      }
+      return total;
+} 
   public  void addPlayer(Player P){ /*Created by Kierra Ashford, Last edited by Kierra Ashford */
        
      System.out.println("Player "+ P.playerID+ " Curren Turn is" + currentTurn);
        P.pHand.add(0,D.getCard());
        P.pHand.add(1,D.getCard());
+       P.handValue = getHandValue(P.pHand);
        players.add(P);
        
   }
@@ -118,6 +127,7 @@ return index;
      if(msg.contains("BET")){
          int betAmount = Integer.parseInt(msg);
          players.get(currentTurn).amount = betAmount;
+         System.out.println(betAmount);
            }
     
 }
@@ -141,13 +151,7 @@ return index;
       System.out.println(hintMessages[indexReturn]);
       return  hintMessages[indexReturn]; 
   }
-public static int getHandValue(Vector<Card> Hand){
-  int total = 0;
-for(int i = 0; i < Hand.size();i++){
-         total+= Card.getCardLiteralValue(Hand.get(i).getCardValue());
-      }
-      return total;
-} 
+
   //clear the game/reset
   public static Vector<Card> switchHand(Vector<Card> Hand){   /*Created by Kierra Ashford, last Edited by Kierra Ashford*/
           Card card1 = Hand.get(0);

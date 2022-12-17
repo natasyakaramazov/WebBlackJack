@@ -9,8 +9,9 @@ import java.util.Vector;
 
 
 public class Player{
-    int amount = 5000;
-    int amountWon = 0;
+    int handValue;
+    int amount;
+    int amountWon;
     String name;  
     String LastMessageToPlayer;
     int playerID;
@@ -28,7 +29,7 @@ public class Player{
     public Player()
     {
         pHand = new Vector<Card>();
-         
+         handValue = 0;
     }
 
     //logic check of the player

@@ -16,7 +16,7 @@
 <body>
 
   <p id= "ValueOfCards" style="text-align: left; color: white;position:absolute;left:40px;bottom:50px;">Value of Cards:</p>
-  <p id="LiteralValue" style = "text-align: left; color:white; position:absolute; left:90px; bottom:50px;">0</p>
+  <p id="LiteralValue" style = "text-align: left; color:white; position:absolute; right:90px; bottom:50px;">0</p>
 
   <img id="card1" src="AD.svg" width= "150px" class="fix">
   <img id="card2" src="AD.svg" width="150px" class="fix2">
@@ -98,7 +98,7 @@ console.log("Message received: ");
 
 
   const obj = JSON.parse(msg); //This makes an obj out of what Json parses from msg
-  if(obj.winLoss !=0){
+  if(obj.winLoss >0){
    console.log(obj.winLoss);
   if(obj.winLoss === 1234){
    let header = document.querySelector("h2");
@@ -161,6 +161,7 @@ console.log("Message received: ");
       
    let header = document.querySelector("h2");
   header.innerText = "It is the Dealer's Turn"; 
+
     for(var i = 0; i <2;i++){
       const card =  player.pHand[i];
       var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
@@ -175,6 +176,7 @@ console.log("Message received: ");
       
       let header = document.querySelector("h2");
      header.innerText = "It is the Bot's Turn"; 
+    
        for(var i = 0; i <2;i++){
          const card =  player.pHand[i];
          var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
@@ -187,7 +189,9 @@ console.log("Message received: ");
   }else if(playersArray[currentTurn].playerID ==currentTurn){        /* 2 == 2*/
       const player = playersArray[currentTurn]; 
       let header = document.querySelector("h2");
-      header.innerText = "It is Your Turn, Player " + player.playerID; 
+      header.innerText = "It is Your Turn, Player " + player.playerID;  
+      let handValue = document.getElementById("LiteralValue");
+     handValue.innerText = player.handValue;
         for(var i = 0; i <2;i++){
           const card =  player.pHand[i];
           var filename = value_to_char.get(card.cardvalue) + suite_to_char.get(card.cardsuit) + ".svg";
@@ -210,7 +214,8 @@ console.log("Message received: ");
   let header = document.querySelector("h2");
   header.innerText = "It is Player " + currentTurn + "'s Turn. Player "+ player.playerID; 
       
-        
+  let handValue = document.getElementById("LiteralValue");
+     handValue.innerText = player.handValue;
   //Need to change this to showcase last two cards 
   for(var i = 0; i <2;i++){
     const  card =  player.pHand[i];
@@ -256,7 +261,7 @@ function sendBet(){
        var msg = {
          event: "BET",
          bet: document.getElementById("sendBet").value,
-         amount: amount    
+          
        };
     
     connection.send(JSON.stringify(msg));
@@ -292,6 +297,7 @@ but I'm not sure if I'm doing it right because "E" isn't being recognized as a n
            
             
             }
+            
           
           connection.send(JSON.stringify(E));
           console.log(JSON.stringify(E));
